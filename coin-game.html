@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +9,76 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
-    body { margin: 0; background: #23272e; color: #abb2bf; font-family: system-ui, sans-serif; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #1e2227; }
-    ::-webkit-scrollbar-thumb { background: #3f4451; border-radius: 4px; }
-    .btn-push:active { transform: translateY(2px); }
-    
-    @keyframes shake {
-      0% { transform: translate(1px, 1px) rotate(0deg); }
-      10% { transform: translate(-1px, -2px) rotate(-1deg); }
-      20% { transform: translate(-3px, 0px) rotate(1deg); }
-      30% { transform: translate(3px, 2px) rotate(0deg); }
-      40% { transform: translate(1px, -1px) rotate(1deg); }
-      50% { transform: translate(-1px, 2px) rotate(-1deg); }
-      60% { transform: translate(-3px, 1px) rotate(0deg); }
-      70% { transform: translate(3px, 1px) rotate(-1deg); }
-      80% { transform: translate(-1px, -1px) rotate(1deg); }
-      90% { transform: translate(1px, 2px) rotate(0deg); }
-      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    body {
+      margin: 0;
+      background: #23272e;
+      color: #abb2bf;
+      font-family: system-ui, sans-serif;
     }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1e2227;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #3f4451;
+      border-radius: 4px;
+    }
+
+    .btn-push:active {
+      transform: translateY(2px);
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translate(1px, 1px) rotate(0deg);
+      }
+
+      10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+      }
+
+      20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+      }
+
+      30% {
+        transform: translate(3px, 2px) rotate(0deg);
+      }
+
+      40% {
+        transform: translate(1px, -1px) rotate(1deg);
+      }
+
+      50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+      }
+
+      60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+      }
+
+      70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+      }
+
+      80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+      }
+
+      90% {
+        transform: translate(1px, 2px) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+      }
+    }
+
     .hurricane-active {
       animation: shake 2.5s infinite;
       border-color: #56b6c2 !important;
@@ -34,6 +86,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="root"></div>
 
@@ -42,15 +95,15 @@
 
     // --- Icons ---
     const Icons = {
-      Coin: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="8" cy="8" r="6"/><path d="M18 10.5a6 6 0 1 1-8 8"/><path d="M7 6h1v4"/><path d="m16.7 13.9.7.7-2.8 2.8"/></svg>,
-      Zap: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
-      Shield: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>,
-      Trophy: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>,
-      Rocket: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>,
-      Robot: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>,
-      Spray: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h3"/><path d="M15 4a3 3 0 0 0-5.66 1"/><path d="M12 21h8a2 2 0 0 0 2-2V7H10v3"/><path d="m6 8 2-1 2-2"/></svg>,
-      Wind: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>,
-      Infinity: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 12c-2-2.5-3.5-3-4-2s-1 1.5 0 2c1.1 1.1 3 1 4 0s2-1 4 0c1.5 1 0 2 0 2.5s-2 1.5-4 0-4-1.5-4-1.5c-2.5 0-2.5 2 0 2.5 1.5 0 4 0 4 0 2.5 0 4 0 4 0s1.5-2 0-2.5-2.5-1.5-2.5-1.5c-2.5 0-2.5 2 0 2.5 1.5 0 4 0 4 0 2.5 0 4 0 4 0"/></svg>
+      Coin: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="8" cy="8" r="6" /><path d="M18 10.5a6 6 0 1 1-8 8" /><path d="M7 6h1v4" /><path d="m16.7 13.9.7.7-2.8 2.8" /></svg>,
+      Zap: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>,
+      Shield: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
+      Trophy: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></svg>,
+      Rocket: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg>,
+      Robot: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><line x1="8" y1="16" x2="8" y2="16" /><line x1="16" y1="16" x2="16" y2="16" /></svg>,
+      Spray: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 3v18h3" /><path d="M15 4a3 3 0 0 0-5.66 1" /><path d="M12 21h8a2 2 0 0 0 2-2V7H10v3" /><path d="m6 8 2-1 2-2" /></svg>,
+      Wind: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" /><path d="M9.6 4.6A2 2 0 1 1 11 8H2" /><path d="M12.6 19.4A2 2 0 1 0 14 16H2" /></svg>,
+      Infinity: (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 12c-2-2.5-3.5-3-4-2s-1 1.5 0 2c1.1 1.1 3 1 4 0s2-1 4 0c1.5 1 0 2 0 2.5s-2 1.5-4 0-4-1.5-4-1.5c-2.5 0-2.5 2 0 2.5 1.5 0 4 0 4 0 2.5 0 4 0 4 0s1.5-2 0-2.5-2.5-1.5-2.5-1.5c-2.5 0-2.5 2 0 2.5 1.5 0 4 0 4 0 2.5 0 4 0 4 0" /></svg>
     };
 
     const colors = { bg: '#23272e', panel: '#1e2227', border: '#3f4451', text: '#abb2bf', textMuted: '#5c6370', blue: '#61afef', yellow: '#e5c07b', green: '#98c379', red: '#e06c75', purple: '#c678dd', cyan: '#56b6c2', orange: '#d19a66' };
@@ -65,20 +118,21 @@
       const [maxValueRecord, setMaxValueRecord] = useState(0);
       const [isGameActive, setIsGameActive] = useState(true);
       const [isFlipping, setIsFlipping] = useState(false);
-      const [lastFlipResult, setLastFlipResult] = useState(null); 
+      const [lastFlipResult, setLastFlipResult] = useState(null);
       const [log, setLog] = useState([]);
       const [autoRun, setAutoRun] = useState(false);
-      
+
       // Modes & Items
       const [chaosMode, setChaosMode] = useState(false);
+      const [chaosLocked, setChaosLocked] = useState(false);
       const [hasTitanium, setHasTitanium] = useState(false);
       const [hasTwinCoin, setHasTwinCoin] = useState(false);
       const [hasAutoRun, setHasAutoRun] = useState(false);
       const [hasRaid, setHasRaid] = useState(false);
-      
+
       // *** NEW STATE ***
-      const [hasRunTillFail, setHasRunTillFail] = useState(false); 
-      const [runTillFailActive, setRunTillFailActive] = useState(false); 
+      const [hasRunTillFail, setHasRunTillFail] = useState(false);
+      const [runTillFailActive, setRunTillFailActive] = useState(false);
 
       // Hurricane State
       const [hurricaneEndTime, setHurricaneEndTime] = useState(null);
@@ -92,17 +146,17 @@
 
       // Refs
       const stateRef = useRef({});
-      stateRef.current = { 
-        bank, currentRunValue, tailsCount, isGameActive, chaosMode, 
+      stateRef.current = {
+        bank, currentRunValue, tailsCount, isGameActive, chaosMode, chaosLocked,
         hasTitanium, hasTwinCoin, hasAutoRun, hasRaid, hurricaneEndTime,
         achievements, maxValueRecord, maxTailsRecord,
-        runTillFailActive 
+        hasRunTillFail, runTillFailActive
       };
 
       // --- Helpers ---
 
-      const addLog = (msg, type='info') => {
-        setLog(prev => [{id: Math.random(), msg, type, time: new Date().toLocaleTimeString()}, ...prev].slice(0, 100));
+      const addLog = (msg, type = 'info') => {
+        setLog(prev => [{ id: Math.random(), msg, type, time: new Date().toLocaleTimeString() }, ...prev].slice(0, 100));
       };
 
       const checkAchievements = (val, tails) => {
@@ -129,22 +183,22 @@
         if (reward > 0 || msg) {
           setAchievements(newAch);
           setBank(prev => prev + reward);
-          if(msg) addLog(msg, 'gold');
+          if (msg) addLog(msg, 'gold');
         }
       };
 
       const endGame = (reason) => {
         const { currentRunValue, tailsCount, maxValueRecord, maxTailsRecord } = stateRef.current;
-        
+
         // Decay Multiplier
         const decay = Math.pow(0.9, tailsCount);
         const finalEarnings = currentRunValue * decay;
-        
+
         setBank(prev => prev + finalEarnings);
-        
+
         if (currentRunValue > maxValueRecord) setMaxValueRecord(currentRunValue);
         if (tailsCount > maxTailsRecord) setMaxTailsRecord(tailsCount);
-        
+
         checkAchievements(currentRunValue, tailsCount);
 
         setIsGameActive(false);
@@ -164,11 +218,11 @@
         }
 
         if (chaosMode && !isHurricane && Math.random() < 0.002) {
-           if (Math.random() < 0.20) {
-             const duration = 5 * 60 * 1000; // 5 minutes
-             setHurricaneEndTime(now + duration);
-             addLog("⚠️ HURRICANE WARNING! WIN CONDITIONS FLIPPED FOR 5 MINS! ⚠️", "cyan");
-           }
+          if (Math.random() < 0.20) {
+            const duration = 5 * 60 * 1000; // 5 minutes
+            setHurricaneEndTime(now + duration);
+            addLog("⚠️ HURRICANE WARNING! WIN CONDITIONS FLIPPED FOR 5 MINS! ⚠️", "cyan");
+          }
         }
 
         // --- CHAOS EVENTS ---
@@ -180,18 +234,18 @@
             setIsGameActive(false);
             return;
           }
-          
+
           // 2. VENUS (Halve Everything)
           if (!hasTitanium && Math.random() < 0.125) {
             setBank(prev => prev / 2);
             setCurrentRunValue(prev => prev / 2);
             setLastFlipResult('venus');
             addLog("Pulled to Venus! Bank & Run HALVED.", "purple");
-            return; 
+            return;
           }
 
           // 3. THE EDGE (10x)
-          if (Math.random() < (1/6000)) {
+          if (Math.random() < (1 / 6000)) {
             setCurrentRunValue(prev => prev * 10);
             setLastFlipResult('side');
             addLog("COIN LANDED ON SIDE! 10x Multiplier!", "cyan");
@@ -213,29 +267,29 @@
         let isWin = false;
 
         if (isHurricane) {
-           isWin = !landedTails;
+          isWin = !landedTails;
         } else {
-           isWin = landedTails;
+          isWin = landedTails;
         }
 
         if (isWin) {
           // --- WINNING FLIP ---
-          setLastFlipResult(landedTails ? 'tails' : 'heads'); 
+          setLastFlipResult(landedTails ? 'tails' : 'heads');
           setTailsCount(prev => prev + 1);
 
           let mult = hasTitanium ? 2.4 : 2.0;
-          
+
           if (chaosMode && Math.random() < 0.10) {
-             setCurrentRunValue(prev => prev * 0.5);
-             addLog("Cursed Flip! Value halved despite win.", "red");
+            setCurrentRunValue(prev => prev * 0.5);
+            addLog("Cursed Flip! Value halved despite win.", "red");
           } else {
-             setCurrentRunValue(prev => prev * mult);
+            setCurrentRunValue(prev => prev * mult);
           }
 
         } else {
           // --- LOSING FLIP ---
           if (chaosMode && Math.random() < 0.001) {
-            setLastFlipResult('side'); 
+            setLastFlipResult('side');
             setCurrentRunValue(prev => prev * 4);
             addLog("MIRACLE SAVE! 4x Bonus & Continued!", "cyan");
           } else {
@@ -261,8 +315,16 @@
         setTailsCount(0);
         setIsGameActive(true);
         setLastFlipResult(null);
-        setRunTillFailActive(false); 
+        setRunTillFailActive(false);
       };
+
+      // Chaos Lock Effect - Unlock when bank reaches 1M
+      useEffect(() => {
+        if (chaosLocked && bank >= 1000000) {
+          setChaosLocked(false);
+          addLog("Chaos Mode UNLOCKED! You can now disable it.", "green");
+        }
+      }, [bank, chaosLocked]);
 
       // Auto Run Effect (The Bot)
       useEffect(() => {
@@ -274,7 +336,7 @@
             } else {
               doFlip();
             }
-          }, 50); 
+          }, 50);
         }
         return () => clearInterval(interval);
       }, [autoRun, hasAutoRun]);
@@ -290,29 +352,29 @@
             } else {
               doFlip(); // Keep flipping
             }
-          }, 150); 
+          }, 150);
         }
         return () => clearInterval(interval);
       }, [runTillFailActive]);
       // *************************************
 
       // --- Purchasing & Activation ---
-      
+
       const buyRunTillFail = () => {
         if (bank >= 400 && !hasRunTillFail) {
-            setBank(prev => prev - 400);
-            setHasRunTillFail(true);
-            addLog("Run Till Failure Protocol UNLOCKED! (-$400)", "purple");
+          setBank(prev => prev - 400);
+          setHasRunTillFail(true);
+          addLog("Run Till Failure Protocol UNLOCKED! (-$400)", "purple");
         }
       };
 
       const activateRunTillFail = () => {
-        const cost = stateRef.current.hasRunTillFail ? 0 : 5;
-        
+        const cost = hasRunTillFail ? 0 : 5;
+
         if (!isGameActive || autoRun || runTillFailActive) return;
         if (bank < cost) {
-            addLog(`Need $${cost} to activate Run Till Failure.`, "red");
-            return;
+          addLog(`Need $${cost} to activate Run Till Failure.`, "red");
+          return;
         }
 
         setBank(prev => prev - cost);
@@ -347,292 +409,304 @@
       // --- Computed UI Helpers ---
       const multiplier = Math.pow(0.9, tailsCount);
       const bankValue = currentRunValue * multiplier;
-      
+
       const isHurricaneActive = hurricaneEndTime && Date.now() < hurricaneEndTime;
       const hurricaneTimeLeft = isHurricaneActive ? Math.ceil((hurricaneEndTime - Date.now()) / 1000) : 0;
-      
+
       const runTillFailCost = hasRunTillFail ? 0 : 5;
       const canAffordRunTillFail = bank >= runTillFailCost;
-      const runTillFailButtonText = hasRunTillFail 
-                                     ? (runTillFailActive ? "RUNNING TILL FAILURE (FREE)" : "RUN TILL FAILURE (FREE)")
-                                     : (runTillFailActive ? "RUNNING TILL FAILURE ($5)" : "RUN TILL FAILURE ($5)");
+      const runTillFailButtonText = hasRunTillFail
+        ? (runTillFailActive ? "RUNNING TILL FAILURE (FREE)" : "RUN TILL FAILURE (FREE)")
+        : (runTillFailActive ? "RUNNING TILL FAILURE ($5)" : "RUN TILL FAILURE ($5)");
 
 
       return (
-        <div style={{minHeight:'100vh', display:'grid', gridTemplateColumns: '1fr 380px', gap:'1px'}}>
-          
+        <div style={{ minHeight: '100vh', display: 'grid', gridTemplateColumns: '1fr 380px', gap: '1px' }}>
+
           {/* LEFT: Game Zone */}
           <div style={{
-            padding:'2rem', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative',
+            padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative',
             background: isHurricaneActive ? 'radial-gradient(circle, #2c3e50 0%, #000000 100%)' : colors.bg,
             transition: 'background 1s ease'
           }}>
-             
-             {/* Hurricane Overlay */}
-             {isHurricaneActive && (
-               <div style={{position:'absolute', top:0, left:0, right:0, padding:'1rem', background:'rgba(86, 182, 194, 0.2)', color:colors.cyan, textAlign:'center', fontWeight:'bold', borderBottom:`1px solid ${colors.cyan}`}}>
-                  <Icons.Wind width={24} style={{verticalAlign:'middle', marginRight:'10px'}}/>
-                  HURRICANE ACTIVE! HEADS WINS! ({Math.floor(hurricaneTimeLeft/60)}:{(hurricaneTimeLeft%60).toString().padStart(2,'0')})
-               </div>
-             )}
 
-             <div style={{marginBottom:'2rem', textAlign:'center'}}>
-               <h1 style={{fontSize:'3rem', margin:0, color: hasTitanium ? colors.cyan : colors.yellow}}>
-                 {hasTitanium ? "Titanium Coin" : "Nickel Coin"}
-               </h1>
-               <div style={{color: chaosMode ? colors.red : colors.blue, fontWeight:'bold', letterSpacing:'2px'}}>
-                 {chaosMode ? "CHAOS MODE ACTIVE" : "STANDARD PHYSICS"}
-               </div>
-             </div>
+            {/* Hurricane Overlay */}
+            {isHurricaneActive && (
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '1rem', background: 'rgba(86, 182, 194, 0.2)', color: colors.cyan, textAlign: 'center', fontWeight: 'bold', borderBottom: `1px solid ${colors.cyan}` }}>
+                <Icons.Wind width={24} style={{ verticalAlign: 'middle', marginRight: '10px' }} />
+                HURRICANE ACTIVE! HEADS WINS! ({Math.floor(hurricaneTimeLeft / 60)}:{(hurricaneTimeLeft % 60).toString().padStart(2, '0')})
+              </div>
+            )}
 
-             {/* The Coin */}
-             <div className={isHurricaneActive ? "hurricane-active" : ""} style={{
-               width:'200px', height:'200px', borderRadius:'50%', 
-               background: hasTitanium ? `linear-gradient(135deg, #e0e0e0, #909090)` : `linear-gradient(135deg, ${colors.yellow}, #c69c6d)`,
-               border: `8px solid ${isHurricaneActive ? colors.cyan : (chaosMode ? colors.red : colors.border)}`,
-               display:'flex', alignItems:'center', justifyContent:'center',
-               fontSize:'5rem', fontWeight:'900', color: colors.bg,
-               boxShadow: `0 0 50px ${isHurricaneActive ? 'rgba(86,182,194,0.5)' : (chaosMode ? 'rgba(224, 108, 117, 0.3)' : 'rgba(0,0,0,0.5)')}`,
-               transform: isFlipping ? 'scale(0.9) rotateY(180deg)' : 'scale(1) rotateY(0deg)',
-               transition: 'transform 0.2s'
-             }}>
-               {lastFlipResult === 'heads' ? 'H' : 
-                lastFlipResult === 'tails' ? 'T' : 
-                lastFlipResult === 'side' ? 'S' : 
-                lastFlipResult === 'venus' ? 'V' : 
-                lastFlipResult === 'rat' ? 'R' : '$'}
-             </div>
+            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+              <h1 style={{ fontSize: '3rem', margin: 0, color: hasTitanium ? colors.cyan : colors.yellow }}>
+                {hasTitanium ? "Titanium Coin" : "Nickel Coin"}
+              </h1>
+              <div style={{ color: chaosMode ? colors.red : colors.blue, fontWeight: 'bold', letterSpacing: '2px' }}>
+                {chaosMode ? "CHAOS MODE ACTIVE" : "STANDARD PHYSICS"}
+              </div>
+            </div>
 
-             {/* Values */}
-             <div style={{marginTop:'3rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem', width:'100%', maxWidth:'600px'}}>
-               <div style={{background:colors.panel, padding:'1.5rem', borderRadius:'12px', textAlign:'center', border:`1px solid ${colors.border}`}}>
-                 <div style={{fontSize:'0.8rem', color:colors.textMuted}}>CURRENT RUN VALUE</div>
-                 <div style={{fontSize:'2rem', color:colors.text, fontWeight:'bold'}}>{currentRunValue.toLocaleString(undefined, {maximumFractionDigits:1})}</div>
-               </div>
-               <div style={{background:colors.panel, padding:'1.5rem', borderRadius:'12px', textAlign:'center', border:`1px solid ${colors.green}`}}>
-                 <div style={{fontSize:'0.8rem', color:colors.green}}>POTENTIAL BANK (+{multiplier.toFixed(2)}x)</div>
-                 <div style={{fontSize:'2rem', color:colors.green, fontWeight:'bold'}}>{bankValue.toLocaleString(undefined, {maximumFractionDigits:1})}</div>
-               </div>
-             </div>
+            {/* The Coin */}
+            <div className={isHurricaneActive ? "hurricane-active" : ""} style={{
+              width: '200px', height: '200px', borderRadius: '50%',
+              background: hasTitanium ? `linear-gradient(135deg, #e0e0e0, #909090)` : `linear-gradient(135deg, ${colors.yellow}, #c69c6d)`,
+              border: `8px solid ${isHurricaneActive ? colors.cyan : (chaosMode ? colors.red : colors.border)}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '5rem', fontWeight: '900', color: colors.bg,
+              boxShadow: `0 0 50px ${isHurricaneActive ? 'rgba(86,182,194,0.5)' : (chaosMode ? 'rgba(224, 108, 117, 0.3)' : 'rgba(0,0,0,0.5)')}`,
+              transform: isFlipping ? 'scale(0.9) rotateY(180deg)' : 'scale(1) rotateY(0deg)',
+              transition: 'transform 0.2s'
+            }}>
+              {lastFlipResult === 'heads' ? 'H' :
+                lastFlipResult === 'tails' ? 'T' :
+                  lastFlipResult === 'side' ? 'S' :
+                    lastFlipResult === 'venus' ? 'V' :
+                      lastFlipResult === 'rat' ? 'R' : '$'}
+            </div>
 
-             {/* Controls */}
-             <div style={{marginTop:'2rem', display:'flex', gap:'1rem', width:'100%', maxWidth:'400px', flexDirection:'column'}}>
-               
-               {isGameActive ? (
-                 <button className="btn-push" onClick={handleManualFlip} disabled={autoRun || runTillFailActive} style={{
-                   background:colors.blue, color:colors.bg, border:'none', padding:'1.5rem', fontSize:'1.2rem', fontWeight:'bold', borderRadius:'8px', cursor:'pointer', opacity: (autoRun || runTillFailActive) ? 0.5 : 1
-                 }}>
-                   FLIP COIN
-                   <div style={{fontSize:'0.8rem', opacity:0.8, marginTop:'5px'}}>
-                     {isHurricaneActive ? "HURRICANE: HEADS TO WIN" : (hasTitanium ? "25% Tails (Titanium)" : "50% Tails")}
-                   </div>
-                 </button>
-               ) : (
-                 <button className="btn-push" onClick={handleReset} style={{
-                   background:colors.green, color:colors.bg, border:'none', padding:'1.5rem', fontSize:'1.2rem', fontWeight:'bold', borderRadius:'8px', cursor:'pointer'
-                 }}>
-                   PLAY AGAIN
-                 </button>
-               )}
-               
-               {/* *** RUN TILL FAILURE BUTTON (Single button logic) *** */}
-               {isGameActive && (
-                  <button onClick={activateRunTillFail} disabled={autoRun || runTillFailActive || !canAffordRunTillFail} style={{
-                    background: runTillFailActive ? colors.purple : 'transparent',
-                    color: runTillFailActive ? colors.bg : (canAffordRunTillFail ? colors.purple : colors.textMuted),
-                    border: `1px solid ${canAffordRunTillFail ? colors.purple : colors.border}`,
-                    padding: '0.8rem',
-                    borderRadius: '8px',
-                    cursor: (autoRun || runTillFailActive || !canAffordRunTillFail) ? 'not-allowed' : 'pointer',
-                    fontSize: '0.9rem',
-                    fontWeight: 'bold',
-                    opacity: (autoRun || !canAffordRunTillFail) ? 0.5 : 1
-                  }}>
-                    {runTillFailButtonText}
-                  </button>
-               )}
-               
-               {hasAutoRun ? (
-                 <button onClick={() => setAutoRun(!autoRun)} disabled={runTillFailActive} style={{
-                   background: autoRun ? colors.red : colors.panel, color: autoRun ? colors.bg : colors.text, border:`1px solid ${colors.border}`, padding:'1rem', borderRadius:'8px', cursor:'pointer', fontWeight:'bold', display:'flex', alignItems:'center', justifyContent:'center', gap:'10px'
-                 }}>
-                   <Icons.Robot width={20}/>
-                   {autoRun ? "STOP AUTO RUN" : "START AUTO RUN"}
-                 </button>
-               ) : (
-                 <div style={{textAlign:'center', padding:'1rem', color:colors.textMuted, border:`1px dashed ${colors.border}`, borderRadius:'8px'}}>
-                   Auto Run locked (Buy in Shop)
-                 </div>
-               )}
-             </div>
+            {/* Values */}
+            <div style={{ marginTop: '3rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', width: '100%', maxWidth: '600px' }}>
+              <div style={{ background: colors.panel, padding: '1.5rem', borderRadius: '12px', textAlign: 'center', border: `1px solid ${colors.border}` }}>
+                <div style={{ fontSize: '0.8rem', color: colors.textMuted }}>CURRENT RUN VALUE</div>
+                <div style={{ fontSize: '2rem', color: colors.text, fontWeight: 'bold' }}>{currentRunValue.toLocaleString(undefined, { maximumFractionDigits: 1 })}</div>
+              </div>
+              <div style={{ background: colors.panel, padding: '1.5rem', borderRadius: '12px', textAlign: 'center', border: `1px solid ${colors.green}` }}>
+                <div style={{ fontSize: '0.8rem', color: colors.green }}>POTENTIAL BANK (+{multiplier.toFixed(2)}x)</div>
+                <div style={{ fontSize: '2rem', color: colors.green, fontWeight: 'bold' }}>{bankValue.toLocaleString(undefined, { maximumFractionDigits: 1 })}</div>
+              </div>
+            </div>
 
-             {/* Stats Strip */}
-             <div style={{marginTop:'2rem', display:'flex', gap:'2rem', color:colors.textMuted, fontSize:'0.9rem'}}>
-               <div>Streak: <span style={{color:colors.text}}>{tailsCount}</span></div>
-               <div>Best Streak: <span style={{color:colors.yellow}}>{maxTailsRecord}</span></div>
-               <div>Best Value: <span style={{color:colors.green}}>{maxValueRecord.toLocaleString(undefined, {maximumFractionDigits:0})}</span></div>
-             </div>
+            {/* Controls */}
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', width: '100%', maxWidth: '400px', flexDirection: 'column' }}>
+
+              {isGameActive ? (
+                <button className="btn-push" onClick={handleManualFlip} disabled={autoRun || runTillFailActive} style={{
+                  background: colors.blue, color: colors.bg, border: 'none', padding: '1.5rem', fontSize: '1.2rem', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer', opacity: (autoRun || runTillFailActive) ? 0.5 : 1
+                }}>
+                  FLIP COIN
+                  <div style={{ fontSize: '0.8rem', opacity: 0.8, marginTop: '5px' }}>
+                    {isHurricaneActive ? "HURRICANE: HEADS TO WIN" : (hasTitanium ? "25% Tails (Titanium)" : "50% Tails")}
+                  </div>
+                </button>
+              ) : (
+                <button className="btn-push" onClick={handleReset} style={{
+                  background: colors.green, color: colors.bg, border: 'none', padding: '1.5rem', fontSize: '1.2rem', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer'
+                }}>
+                  PLAY AGAIN
+                </button>
+              )}
+
+              {/* *** RUN TILL FAILURE BUTTON (Single button logic) *** */}
+              {isGameActive && (
+                <button onClick={activateRunTillFail} disabled={autoRun || runTillFailActive || !canAffordRunTillFail} style={{
+                  background: runTillFailActive ? colors.purple : 'transparent',
+                  color: runTillFailActive ? colors.bg : (canAffordRunTillFail ? colors.purple : colors.textMuted),
+                  border: `1px solid ${canAffordRunTillFail ? colors.purple : colors.border}`,
+                  padding: '0.8rem',
+                  borderRadius: '8px',
+                  cursor: (autoRun || runTillFailActive || !canAffordRunTillFail) ? 'not-allowed' : 'pointer',
+                  fontSize: '0.9rem',
+                  fontWeight: 'bold',
+                  opacity: (autoRun || !canAffordRunTillFail) ? 0.5 : 1
+                }}>
+                  {runTillFailButtonText}
+                </button>
+              )}
+
+              {hasAutoRun ? (
+                <button onClick={() => setAutoRun(!autoRun)} disabled={runTillFailActive} style={{
+                  background: autoRun ? colors.red : colors.panel, color: autoRun ? colors.bg : colors.text, border: `1px solid ${colors.border}`, padding: '1rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'
+                }}>
+                  <Icons.Robot width={20} />
+                  {autoRun ? "STOP AUTO RUN" : "START AUTO RUN"}
+                </button>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '1rem', color: colors.textMuted, border: `1px dashed ${colors.border}`, borderRadius: '8px' }}>
+                  Auto Run locked (Buy in Shop)
+                </div>
+              )}
+            </div>
+
+            {/* Stats Strip */}
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '2rem', color: colors.textMuted, fontSize: '0.9rem' }}>
+              <div>Streak: <span style={{ color: colors.text }}>{tailsCount}</span></div>
+              <div>Best Streak: <span style={{ color: colors.yellow }}>{maxTailsRecord}</span></div>
+              <div>Best Value: <span style={{ color: colors.green }}>{maxValueRecord.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></div>
+            </div>
 
           </div>
 
           {/* RIGHT: Dashboard (Shop, Stats, Logs) */}
-          <div style={{background:colors.panel, borderLeft:`1px solid ${colors.border}`, padding:'1.5rem', display:'flex', flexDirection:'column', height:'100vh', boxSizing:'border-box'}}>
-            
-            <div style={{overflowY:'auto', flex:1, paddingRight:'5px'}}>
+          <div style={{ background: colors.panel, borderLeft: `1px solid ${colors.border}`, padding: '1.5rem', display: 'flex', flexDirection: 'column', height: '100vh', boxSizing: 'border-box' }}>
+
+            <div style={{ overflowY: 'auto', flex: 1, paddingRight: '5px' }}>
               {/* Bank Header */}
-              <div style={{paddingBottom:'1.5rem', borderBottom:`1px solid ${colors.border}`, marginBottom:'1.5rem'}}>
-                <div style={{fontSize:'0.8rem', color:colors.textMuted}}>TOTAL BANK</div>
-                <div style={{fontSize:'2.5rem', fontWeight:'900', color:colors.yellow}}>${Math.floor(bank).toLocaleString()}</div>
+              <div style={{ paddingBottom: '1.5rem', borderBottom: `1px solid ${colors.border}`, marginBottom: '1.5rem' }}>
+                <div style={{ fontSize: '0.8rem', color: colors.textMuted }}>TOTAL BANK</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', color: colors.yellow }}>${Math.floor(bank).toLocaleString()}</div>
               </div>
 
               {/* Mode Switch */}
-              <div style={{marginBottom:'2rem', background:colors.bg, padding:'1rem', borderRadius:'8px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+              <div style={{ marginBottom: '2rem', background: colors.bg, padding: '1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
-                  <div style={{fontWeight:'bold', color: chaosMode ? colors.red : colors.text}}>Chaos Mode</div>
-                  <div style={{fontSize:'0.7rem', color:colors.textMuted}}>Enables Hazards & Weather</div>
+                  <div style={{ fontWeight: 'bold', color: chaosMode ? colors.red : colors.text }}>Chaos Mode</div>
+                  <div style={{ fontSize: '0.7rem', color: colors.textMuted }}>
+                    {chaosLocked ? `Locked! Reach $1M to unlock (${Math.floor(bank).toLocaleString()})` : 'Enables Hazards & Weather'}
+                  </div>
                 </div>
-                <div onClick={() => !autoRun && setChaosMode(!chaosMode)} style={{
-                  width:'50px', height:'26px', background: chaosMode ? colors.red : colors.border, borderRadius:'13px', position:'relative', cursor: autoRun ? 'not-allowed' : 'pointer', opacity: autoRun ? 0.5 : 1
+                <div onClick={() => {
+                  if (autoRun) return;
+                  if (chaosMode && chaosLocked) return; // Can't turn off while locked
+                  if (!chaosMode) {
+                    setChaosMode(true);
+                    setChaosLocked(true);
+                    addLog("Chaos Mode ACTIVATED! Reach $1M to unlock toggle.", "red");
+                  } else {
+                    setChaosMode(false);
+                  }
+                }} style={{
+                  width: '50px', height: '26px', background: chaosMode ? colors.red : colors.border, borderRadius: '13px', position: 'relative', cursor: (autoRun || chaosLocked) ? 'not-allowed' : 'pointer', opacity: (autoRun || (chaosMode && chaosLocked)) ? 0.5 : 1
                 }}>
                   <div style={{
-                    width:'20px', height:'20px', background:'white', borderRadius:'50%', position:'absolute', top:'3px', left: chaosMode ? '27px' : '3px', transition:'all 0.2s'
-                  }}/>
+                    width: '20px', height: '20px', background: 'white', borderRadius: '50%', position: 'absolute', top: '3px', left: chaosMode ? '27px' : '3px', transition: 'all 0.2s'
+                  }} />
                 </div>
               </div>
 
               {/* Shop / Upgrades */}
-              <h3 style={{color:colors.text, margin:'0 0 1rem 0', display:'flex', alignItems:'center', gap:'0.5rem'}}><Icons.Zap width={18}/> Shop</h3>
-              <div style={{display:'flex', flexDirection:'column', gap:'0.8rem', marginBottom:'2rem'}}>
-                
+              <h3 style={{ color: colors.text, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Icons.Zap width={18} /> Shop</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '2rem' }}>
+
                 {/* *** RUN TILL FAILURE ITEM *** */}
-                <div style={{background:colors.bg, padding:'1rem', borderRadius:'8px', border:`1px solid ${hasRunTillFail ? colors.purple : colors.border}`, opacity: hasRunTillFail ? 0.6 : 1}}>
-                   <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
-                     <div style={{fontWeight:'bold', color:colors.purple}}>Run Till Failure Protocol</div>
-                     {hasRunTillFail ? <Icons.Infinity width={16} /> : <div style={{fontSize:'0.8rem', color:colors.red}}>$400</div>}
-                   </div>
-                   <div style={{fontSize:'0.75rem', color:colors.textMuted, marginBottom:'0.8rem'}}>
-                     **Permanently removes the $5 activation fee** for Run Till Failure.
-                   </div>
-                   {!hasRunTillFail && (
-                     <button onClick={buyRunTillFail} disabled={bank < 400} style={{
-                       width:'100%', background: bank >= 400 ? colors.purple : colors.border, color:colors.bg, border:'none', padding:'0.5rem', borderRadius:'4px', cursor: bank >= 400 ? 'pointer' : 'not-allowed', fontWeight:'bold'
-                     }}>
-                       BUY
-                     </button>
-                   )}
+                <div style={{ background: colors.bg, padding: '1rem', borderRadius: '8px', border: `1px solid ${hasRunTillFail ? colors.purple : colors.border}`, opacity: hasRunTillFail ? 0.6 : 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <div style={{ fontWeight: 'bold', color: colors.purple }}>Run Till Failure Protocol</div>
+                    {hasRunTillFail ? <Icons.Infinity width={16} /> : <div style={{ fontSize: '0.8rem', color: colors.red }}>$400</div>}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: colors.textMuted, marginBottom: '0.8rem' }}>
+                    **Permanently removes the $5 activation fee** for Run Till Failure.
+                  </div>
+                  {!hasRunTillFail && (
+                    <button onClick={buyRunTillFail} disabled={bank < 400} style={{
+                      width: '100%', background: bank >= 400 ? colors.purple : colors.border, color: colors.bg, border: 'none', padding: '0.5rem', borderRadius: '4px', cursor: bank >= 400 ? 'pointer' : 'not-allowed', fontWeight: 'bold'
+                    }}>
+                      BUY
+                    </button>
+                  )}
                 </div>
                 {/* ***************************** */}
 
                 {/* Auto Run Item */}
-                <div style={{background:colors.bg, padding:'1rem', borderRadius:'8px', border:`1px solid ${hasAutoRun ? colors.blue : colors.border}`, opacity: hasAutoRun ? 0.6 : 1}}>
-                   <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
-                     <div style={{fontWeight:'bold', color:colors.blue}}>Auto-Clicker Bot</div>
-                     {hasAutoRun ? <Icons.Robot width={16} /> : <div style={{fontSize:'0.8rem', color:colors.red}}>$1,000,000</div>}
-                   </div>
-                   <div style={{fontSize:'0.75rem', color:colors.textMuted, marginBottom:'0.8rem'}}>
-                     Automatically flips the coin and resets extremely fast.
-                   </div>
-                   {!hasAutoRun && (
-                     <button onClick={buyAutoRun} disabled={bank < 1000000} style={{
-                       width:'100%', background: bank >= 1000000 ? colors.blue : colors.border, color:colors.bg, border:'none', padding:'0.5rem', borderRadius:'4px', cursor: bank >= 1000000 ? 'pointer' : 'not-allowed', fontWeight:'bold'
-                     }}>
-                       BUY
-                     </button>
-                   )}
+                <div style={{ background: colors.bg, padding: '1rem', borderRadius: '8px', border: `1px solid ${hasAutoRun ? colors.blue : colors.border}`, opacity: hasAutoRun ? 0.6 : 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <div style={{ fontWeight: 'bold', color: colors.blue }}>Auto-Clicker Bot</div>
+                    {hasAutoRun ? <Icons.Robot width={16} /> : <div style={{ fontSize: '0.8rem', color: colors.red }}>$1,000,000</div>}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: colors.textMuted, marginBottom: '0.8rem' }}>
+                    Automatically flips the coin and resets extremely fast.
+                  </div>
+                  {!hasAutoRun && (
+                    <button onClick={buyAutoRun} disabled={bank < 1000000} style={{
+                      width: '100%', background: bank >= 1000000 ? colors.blue : colors.border, color: colors.bg, border: 'none', padding: '0.5rem', borderRadius: '4px', cursor: bank >= 1000000 ? 'pointer' : 'not-allowed', fontWeight: 'bold'
+                    }}>
+                      BUY
+                    </button>
+                  )}
                 </div>
 
                 {/* RAID Spray */}
-                <div style={{background:colors.bg, padding:'1rem', borderRadius:'8px', border:`1px solid ${hasRaid ? colors.orange : colors.border}`, opacity: hasRaid ? 0.6 : 1}}>
-                   <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
-                     <div style={{fontWeight:'bold', color:colors.orange}}>RAID Spray</div>
-                     {hasRaid ? <Icons.Spray width={16} /> : <div style={{fontSize:'0.8rem', color:colors.red}}>$500,000</div>}
-                   </div>
-                   <div style={{fontSize:'0.75rem', color:colors.textMuted, marginBottom:'0.8rem'}}>
-                     Lowers Rat theft chance by 70%.
-                   </div>
-                   {!hasRaid && (
-                     <button onClick={buyRaid} disabled={bank < 500000} style={{
-                       width:'100%', background: bank >= 500000 ? colors.orange : colors.border, color:colors.bg, border:'none', padding:'0.5rem', borderRadius:'4px', cursor: bank >= 500000 ? 'pointer' : 'not-allowed', fontWeight:'bold'
-                     }}>
-                       BUY
-                     </button>
-                   )}
+                <div style={{ background: colors.bg, padding: '1rem', borderRadius: '8px', border: `1px solid ${hasRaid ? colors.orange : colors.border}`, opacity: hasRaid ? 0.6 : 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <div style={{ fontWeight: 'bold', color: colors.orange }}>RAID Spray</div>
+                    {hasRaid ? <Icons.Spray width={16} /> : <div style={{ fontSize: '0.8rem', color: colors.red }}>$500,000</div>}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: colors.textMuted, marginBottom: '0.8rem' }}>
+                    Lowers Rat theft chance by 70%.
+                  </div>
+                  {!hasRaid && (
+                    <button onClick={buyRaid} disabled={bank < 500000} style={{
+                      width: '100%', background: bank >= 500000 ? colors.orange : colors.border, color: colors.bg, border: 'none', padding: '0.5rem', borderRadius: '4px', cursor: bank >= 500000 ? 'pointer' : 'not-allowed', fontWeight: 'bold'
+                    }}>
+                      BUY
+                    </button>
+                  )}
                 </div>
 
                 {/* Titanium Item */}
-                <div style={{background:colors.bg, padding:'1rem', borderRadius:'8px', border:`1px solid ${hasTitanium ? colors.cyan : colors.border}`, opacity: hasTitanium ? 0.6 : 1}}>
-                   <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
-                     <div style={{fontWeight:'bold', color:colors.cyan}}>Titanium Plating</div>
-                     {hasTitanium ? <Icons.Shield width={16} /> : <div style={{fontSize:'0.8rem', color:colors.yellow}}>Req: 7 Max Tails</div>}
-                   </div>
-                   <div style={{fontSize:'0.75rem', color:colors.textMuted, marginBottom:'0.8rem'}}>
-                     Immune to Venus. +20% extra value (x2.4). Tails chance reduced to 25%.
-                   </div>
-                   {!hasTitanium && (
-                     <button onClick={buyTitanium} disabled={maxTailsRecord < 7} style={{
-                       width:'100%', background: maxTailsRecord >= 7 ? colors.cyan : colors.border, color:colors.bg, border:'none', padding:'0.5rem', borderRadius:'4px', cursor: maxTailsRecord >= 7 ? 'pointer' : 'not-allowed', fontWeight:'bold'
-                     }}>
-                       {maxTailsRecord >= 7 ? "EQUIP (Free)" : "LOCKED"}
-                     </button>
-                   )}
+                <div style={{ background: colors.bg, padding: '1rem', borderRadius: '8px', border: `1px solid ${hasTitanium ? colors.cyan : colors.border}`, opacity: hasTitanium ? 0.6 : 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <div style={{ fontWeight: 'bold', color: colors.cyan }}>Titanium Plating</div>
+                    {hasTitanium ? <Icons.Shield width={16} /> : <div style={{ fontSize: '0.8rem', color: colors.yellow }}>Req: 7 Max Tails</div>}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: colors.textMuted, marginBottom: '0.8rem' }}>
+                    Immune to Venus. +20% extra value (x2.4). Tails chance reduced to 25%.
+                  </div>
+                  {!hasTitanium && (
+                    <button onClick={buyTitanium} disabled={maxTailsRecord < 7} style={{
+                      width: '100%', background: maxTailsRecord >= 7 ? colors.cyan : colors.border, color: colors.bg, border: 'none', padding: '0.5rem', borderRadius: '4px', cursor: maxTailsRecord >= 7 ? 'pointer' : 'not-allowed', fontWeight: 'bold'
+                    }}>
+                      {maxTailsRecord >= 7 ? "EQUIP (Free)" : "LOCKED"}
+                    </button>
+                  )}
                 </div>
 
                 {/* Twin Coin Item */}
-                <div style={{background:colors.bg, padding:'1rem', borderRadius:'8px', border:`1px solid ${hasTwinCoin ? colors.purple : colors.border}`, opacity: hasTwinCoin ? 0.6 : 1}}>
-                   <div style={{display:'flex', justifyContent:'space-between', marginBottom:'0.5rem'}}>
-                     <div style={{fontWeight:'bold', color:colors.purple}}>Twin Coin</div>
-                     {hasTwinCoin ? <Icons.Rocket width={16} /> : <div style={{fontSize:'0.8rem', color:colors.yellow}}>Req: 10k Run Value</div>}
-                   </div>
-                   <div style={{fontSize:'0.75rem', color:colors.textMuted}}>
-                     Spawns a second coin (Base run value starts at 2).
-                   </div>
-                   <div style={{marginTop:'0.5rem', fontSize:'0.7rem', color:colors.textMuted}}>
-                     {hasTwinCoin ? "UNLOCKED" : `Current Max: ${maxValueRecord.toLocaleString(undefined, {maximumFractionDigits:0})} / 10,000`}
-                   </div>
+                <div style={{ background: colors.bg, padding: '1rem', borderRadius: '8px', border: `1px solid ${hasTwinCoin ? colors.purple : colors.border}`, opacity: hasTwinCoin ? 0.6 : 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <div style={{ fontWeight: 'bold', color: colors.purple }}>Twin Coin</div>
+                    {hasTwinCoin ? <Icons.Rocket width={16} /> : <div style={{ fontSize: '0.8rem', color: colors.yellow }}>Req: 10k Run Value</div>}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: colors.textMuted }}>
+                    Spawns a second coin (Base run value starts at 2).
+                  </div>
+                  <div style={{ marginTop: '0.5rem', fontSize: '0.7rem', color: colors.textMuted }}>
+                    {hasTwinCoin ? "UNLOCKED" : `Current Max: ${maxValueRecord.toLocaleString(undefined, { maximumFractionDigits: 0 })} / 10,000`}
+                  </div>
                 </div>
               </div>
 
               {/* Achievements */}
-              <h3 style={{color:colors.text, margin:'0 0 1rem 0', display:'flex', alignItems:'center', gap:'0.5rem'}}><Icons.Trophy width={18}/> Achievements</h3>
-              <div style={{display:'grid', gap:'0.5rem', marginBottom:'2rem'}}>
+              <h3 style={{ color: colors.text, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Icons.Trophy width={18} /> Achievements</h3>
+              <div style={{ display: 'grid', gap: '0.5rem', marginBottom: '2rem' }}>
                 {[
                   { label: '2k Max Value', reward: '+10k Bank', done: achievements.val2k },
                   { label: '115 Tails Streak', reward: '+1M Bank', done: achievements.tails115 },
                   { label: '10k Max Value', reward: 'Twin Coin', done: achievements.val10k },
                 ].map((ach, i) => (
                   <div key={i} style={{
-                    padding:'0.8rem', borderRadius:'6px', background: ach.done ? 'rgba(152, 195, 121, 0.1)' : colors.bg,
-                    border: `1px solid ${ach.done ? colors.green : colors.border}`, display:'flex', justifyContent:'space-between', alignItems:'center'
+                    padding: '0.8rem', borderRadius: '6px', background: ach.done ? 'rgba(152, 195, 121, 0.1)' : colors.bg,
+                    border: `1px solid ${ach.done ? colors.green : colors.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center'
                   }}>
-                    <div style={{fontSize:'0.8rem', color: ach.done ? colors.text : colors.textMuted}}>{ach.label}</div>
-                    <div style={{fontSize:'0.7rem', color: ach.done ? colors.green : colors.textMuted}}>{ach.done ? "UNLOCKED" : ach.reward}</div>
+                    <div style={{ fontSize: '0.8rem', color: ach.done ? colors.text : colors.textMuted }}>{ach.label}</div>
+                    <div style={{ fontSize: '0.7rem', color: ach.done ? colors.green : colors.textMuted }}>{ach.done ? "UNLOCKED" : ach.reward}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Event Log (Fixed Height) */}
-            <div style={{marginTop:'auto', paddingTop:'1rem', borderTop:`1px solid ${colors.border}`}}>
-               <h3 style={{color:colors.text, margin:'0 0 0.5rem 0'}}>Event Log</h3>
-               <div style={{
-                  height:'300px', 
-                  background:colors.bg, 
-                  borderRadius:'8px', 
-                  padding:'0.5rem', 
-                  overflowY:'auto', 
-                  fontSize:'0.75rem', 
-                  fontFamily:'monospace', 
-                  display:'flex', 
-                  flexDirection:'column', 
-                  gap:'4px'
-               }}>
-                 {log.map(entry => (
-                   <div key={entry.id} style={{color: colors[entry.type] || colors.text}}>
-                     <span style={{opacity:0.5}}>[{entry.time}]</span> {entry.msg}
-                   </div>
-                 ))}
-                 {log.length === 0 && <div style={{color:colors.textMuted, textAlign:'center', marginTop:'1rem'}}>Events appear here...</div>}
-               </div>
+            <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: `1px solid ${colors.border}` }}>
+              <h3 style={{ color: colors.text, margin: '0 0 0.5rem 0' }}>Event Log</h3>
+              <div style={{
+                height: '300px',
+                background: colors.bg,
+                borderRadius: '8px',
+                padding: '0.5rem',
+                overflowY: 'auto',
+                fontSize: '0.75rem',
+                fontFamily: 'monospace',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px'
+              }}>
+                {log.map(entry => (
+                  <div key={entry.id} style={{ color: colors[entry.type] || colors.text }}>
+                    <span style={{ opacity: 0.5 }}>[{entry.time}]</span> {entry.msg}
+                  </div>
+                ))}
+                {log.length === 0 && <div style={{ color: colors.textMuted, textAlign: 'center', marginTop: '1rem' }}>Events appear here...</div>}
+              </div>
             </div>
 
           </div>
@@ -644,4 +718,5 @@
     root.render(<ChaosCoinGame />);
   </script>
 </body>
+
 </html>
